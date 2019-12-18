@@ -225,7 +225,7 @@
 				TargetAttributes = {
 					E24DB8071CCF5CF200D46186 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = R4ZY8YN6WB;
+						DevelopmentTeam = 6JLV3YS2CP;
 					};
 					E24DB8201CCF5CF300D46186 = {
 						CreatedOnToolsVersion = 7.3;
@@ -244,6 +244,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -438,6 +439,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6JLV3YS2CP;
 				INFOPLIST_FILE = PickViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zhiqin.PickViewTest;
@@ -449,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6JLV3YS2CP;
 				INFOPLIST_FILE = PickViewTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zhiqin.PickViewTest;
