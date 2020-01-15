@@ -17,7 +17,7 @@
 
 @property (nonatomic , strong)NSMutableArray *yearAry;           //年份
 
-@property (nonatomic , strong)NSArray *monthaAry;                //月份
+@property (nonatomic , strong)NSArray *monthAry;                //月份
 
 @property (nonatomic , strong)NSArray *dayAry;                   //日期
 
@@ -73,7 +73,7 @@
                 [self.yearAry addObject:[NSString stringWithFormat:@"%d",self.year + i - 50]];
             }
         }
-         self.monthaAry = [[NSArray alloc] initWithObjects:@"01" , @"02" , @"03" , @"04" , @"05" , @"06" , @"07" , @"08" , @"09" , @"10" , @"11" , @"12", nil];
+         self.monthAry = [[NSArray alloc] initWithObjects:@"01" , @"02" , @"03" , @"04" , @"05" , @"06" , @"07" , @"08" , @"09" , @"10" , @"11" , @"12", nil];
         self.dayAry = [[NSArray alloc] init];
         self.dayAry = [self returnDayArrayWithNumCount:31];
         self.hourAry = @[@"00",@"01" , @"02" , @"03" , @"04" , @"05" , @"06" , @"07" , @"08" , @"09" , @"10" , @"11" , @"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23"];
@@ -154,7 +154,7 @@
        if (component == 0) {
            return self.yearAry.count;
        }else if (component == 1){
-           return self.monthaAry.count;
+           return self.monthAry.count;
        }else if (component == 2) {
            return self.dayAry.count;
        }else if (component == 3) {
@@ -168,7 +168,7 @@
         if (component == 0) {
             return self.yearAry.count;
         }else if (component == 1){
-            return self.monthaAry.count;
+            return self.monthAry.count;
         }else if (component == 2) {
             return self.dayAry.count;
         }else if (component == 3) {
@@ -180,7 +180,7 @@
         if (component == 0) {
             return self.yearAry.count;
         }else if (component == 1){
-            return self.monthaAry.count;
+            return self.monthAry.count;
         }else if (component == 2) {
             return self.dayAry.count;
         }else {
@@ -190,14 +190,14 @@
         if (component == 0) {
             return self.yearAry.count;
         }else if (component == 1){
-            return self.monthaAry.count;
+            return self.monthAry.count;
         }else
             return self.dayAry.count;
     }else if (_pickViewType == 4) {
         if (component == 0) {
             return self.yearAry.count;
         }else {
-            return self.monthaAry.count;
+            return self.monthAry.count;
         }
     }else if (_pickViewType == 5) {
         if (component == 0) {
@@ -229,7 +229,7 @@
         if (component == 0) {
             return [self.yearAry objectAtIndex:row];
         }else if (component == 1){
-            return [self.monthaAry objectAtIndex:row];
+            return [self.monthAry objectAtIndex:row];
         }else if (component == 2){
             self.day1 = [[self.dayAry objectAtIndex:row] intValue];
             return [self.dayAry objectAtIndex:row];
@@ -244,7 +244,7 @@
         if (component == 0) {
             return [self.yearAry objectAtIndex:row];
         }else if (component == 1){
-            return [self.monthaAry objectAtIndex:row];
+            return [self.monthAry objectAtIndex:row];
         }else if (component == 2){
             self.day1 = [[self.dayAry objectAtIndex:row] intValue];
             return [self.dayAry objectAtIndex:row];
@@ -257,7 +257,7 @@
         if (component == 0) {
             return [self.yearAry objectAtIndex:row];
         }else if (component == 1){
-            return [self.monthaAry objectAtIndex:row];
+            return [self.monthAry objectAtIndex:row];
         }else if (component == 2){
             self.day1 = [[self.dayAry objectAtIndex:row] intValue];
             return [self.dayAry objectAtIndex:row];
@@ -268,7 +268,7 @@
         if (component == 0) {
             return [self.yearAry objectAtIndex:row];
         }else if (component == 1){
-            return [self.monthaAry objectAtIndex:row];
+            return [self.monthAry objectAtIndex:row];
         }else{
             self.day1 = [[self.dayAry objectAtIndex:row] intValue];
             return [self.dayAry objectAtIndex:row];
@@ -277,7 +277,7 @@
         if (component == 0) {
             return [self.yearAry objectAtIndex:row];
         }else {
-            return [self.monthaAry objectAtIndex:row];
+            return [self.monthAry objectAtIndex:row];
         }
     }else if (_pickViewType == 5) {
         if (component == 0) {
@@ -316,7 +316,7 @@
         }
         
         if (component == 1) {
-            NSString *selectMonth = [self.monthaAry objectAtIndex:row];
+            NSString *selectMonth = [self.monthAry objectAtIndex:row];
             self.month = [selectMonth intValue];
             [self updataDayAryWithMouth];
             [self.testPickView reloadAllComponents];
@@ -342,6 +342,63 @@
             NSString *selectSecond = [self.secondAry objectAtIndex:row];
             self.second = [selectSecond intValue];
         }
+    }else if (_pickViewType == 1) {
+        if (component == 0) {
+            NSString *selectYear = [self.yearAry objectAtIndex:row];
+            self.year = [selectYear intValue];
+            self.isRun = [self isRunWithYear:self.year];
+            [self updataDayAryWithMouth];
+            [self.testPickView reloadAllComponents];
+        }
+        
+        if (component == 1) {
+            NSString *selectMonth = [self.monthAry objectAtIndex:row];
+            self.month = [selectMonth intValue];
+            [self updataDayAryWithMouth];
+            [self.testPickView reloadAllComponents];
+            
+        }
+        
+        if (component == 2) {
+            NSString *selectDay = [self.dayAry objectAtIndex:row];
+            self.day = [selectDay intValue];
+        }
+        
+        if (component == 3) {
+            NSString *selectHour = [self.hourAry objectAtIndex:row];
+            self.hour = [selectHour intValue];
+        }
+        
+        if (component == 4) {
+            NSString *selectMinute = [self.minuteAry objectAtIndex:row];
+            self.minute = [selectMinute intValue];
+        }
+    }else if (_pickViewType == 2) {
+        if (component == 0) {
+            NSString *selectYear = [self.yearAry objectAtIndex:row];
+            self.year = [selectYear intValue];
+            self.isRun = [self isRunWithYear:self.year];
+            [self updataDayAryWithMouth];
+            [self.testPickView reloadAllComponents];
+        }
+        
+        if (component == 1) {
+            NSString *selectMonth = [self.monthAry objectAtIndex:row];
+            self.month = [selectMonth intValue];
+            [self updataDayAryWithMouth];
+            [self.testPickView reloadAllComponents];
+            
+        }
+        
+        if (component == 2) {
+            NSString *selectDay = [self.dayAry objectAtIndex:row];
+            self.day = [selectDay intValue];
+        }
+        
+        if (component == 3) {
+            NSString *selectHour = [self.hourAry objectAtIndex:row];
+            self.hour = [selectHour intValue];
+        }
     }else if (_pickViewType == 3) {
         if (component == 0) {
             NSString *slectYear = [self.yearAry objectAtIndex:row];
@@ -352,7 +409,7 @@
         }
         
         if (component == 1) {
-            NSString *slectMonth = [self.monthaAry objectAtIndex:row];
+            NSString *slectMonth = [self.monthAry objectAtIndex:row];
             self.month = [slectMonth intValue];
             [self updataDayAryWithMouth];
             [self.testPickView reloadAllComponents];
@@ -373,13 +430,70 @@
         }
         
         if (component == 1) {
-            NSString *slectMonth = [self.monthaAry objectAtIndex:row];
+            NSString *slectMonth = [self.monthAry objectAtIndex:row];
             self.month = [slectMonth intValue];
             [self.testPickView reloadAllComponents];
             
         }
-    }
-}
+    }else if (_pickViewType == 5) {
+        if (component == 0) {
+            NSString *selectHour = [self.hourAry objectAtIndex:row];
+            self.hour = [selectHour intValue];
+        }
+        
+        if (component == 1) {
+            NSString *selectMinute = [self.minuteAry objectAtIndex:row];
+            self.minute = [selectMinute intValue];
+        }
+        
+        if (component == 2) {
+            NSString *selectSecond = [self.secondAry objectAtIndex:row];
+            self.second = [selectSecond intValue];
+        }
+    }else if (_pickViewType == 6) {
+        if (component == 0) {
+            NSString *selectHour = [self.hourAry objectAtIndex:row];
+            self.hour = [selectHour intValue];
+        }
+        
+        if (component == 1) {
+            NSString *selectMinute = [self.minuteAry objectAtIndex:row];
+            self.minute = [selectMinute intValue];
+        }
+    }else if (_pickViewType == 7) {
+        if (component == 0) {
+            NSString *selectMinute = [self.minuteAry objectAtIndex:row];
+            self.minute = [selectMinute intValue];
+        }
+        
+        if (component == 1) {
+            NSString *selectSecond = [self.secondAry objectAtIndex:row];
+            self.second = [selectSecond intValue];
+        }
+    }else if (_pickViewType == 8) {
+        if (component == 0) {
+            NSString *selectMonth = [self.monthAry objectAtIndex:row];
+            self.month = [selectMonth intValue];
+            [self updataDayAryWithMouth];
+            [self.testPickView reloadAllComponents];
+            
+        }
+        
+        if (component == 1) {
+            NSString *selectDay = [self.dayAry objectAtIndex:row];
+            self.day = [selectDay intValue];
+        }
+        
+        if (component == 2) {
+            NSString *selectHour = [self.hourAry objectAtIndex:row];
+            self.hour = [selectHour intValue];
+        }
+        
+        if (component == 3) {
+            NSString *selectMinute = [self.minuteAry objectAtIndex:row];
+            self.minute = [selectMinute intValue];
+        }
+    }}
 
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     return ([UIScreen mainScreen].bounds.size.width-10)/_numComponces;
@@ -560,13 +674,13 @@
 -(void)setFrisDate
 {
     int year = self.year - [[self.yearAry objectAtIndex:0] intValue];
-    int month = self.month - [[self.monthaAry objectAtIndex:0] intValue];
+    int month = self.month - [[self.monthAry objectAtIndex:0] intValue];
     int day = self.day - [[self.dayAry objectAtIndex:0] intValue];
     int hour = self.hour - [[self.hourAry objectAtIndex:0] intValue];
     int minute = self.minute - [[self.minuteAry objectAtIndex:0] intValue];
     int second = self.second - [[self.secondAry objectAtIndex:0] intValue];
     if (year >= self.yearAry.count ||
-        month >= self.monthaAry.count ||
+        month >= self.monthAry.count ||
         day >= self.dayAry.count ||
         hour >= self.hourAry.count ||
         minute >= self.minuteAry.count ||
@@ -643,6 +757,38 @@
 {
     self.iType = type;
 }
+
+-(void)upDataMonthArray:(NSArray *)monthArray {
+    self.monthAry = monthArray;
+    self.month = [[self.monthAry firstObject] intValue];
+    [self setFrisDate];
+}
+
+-(void)upDataDayArray:(NSArray *)dayArray {
+    self.dayAry = dayArray;
+    self.day = [[self.dayAry firstObject] intValue];
+    self.day1 = self.day;
+    [self setFrisDate];
+}
+
+-(void)upDataHourArray:(NSArray *)hourArray {
+    self.hourAry = hourArray;
+    self.hour = [[self.hourAry firstObject] intValue];
+    [self setFrisDate];
+}
+
+-(void)upDataMinuteArray:(NSArray *)minuteArray {
+    self.minuteAry = minuteArray;
+    self.minute = [[self.minuteAry firstObject] intValue];
+    [self setFrisDate];
+}
+
+-(void)upDataSecondArray:(NSArray *)secondArray {
+    self.secondAry = secondArray;
+    self.second = [[self.secondAry firstObject] intValue];
+    [self setFrisDate];
+}
+
 
 -(void)removePick:(UITapGestureRecognizer *)sender
 {

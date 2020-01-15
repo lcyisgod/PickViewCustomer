@@ -26,6 +26,7 @@
  5:时-分-秒
  6:时-分
  7:分-秒
+ 8:月-日-时-分
  */
 -(instancetype)initWithFrame:(CGRect)frame timeType:(NSInteger)timerType;
 /*
@@ -34,6 +35,27 @@
  */
 //设置返回日期格式
 -(void)useRetuDateType:(int)type;
+
+/*
+指定月份的选择内容
+*/
+-(void)upDataMonthArray:(NSArray *)monthArray;
+/*
+指定天的选择内容
+*/
+-(void)upDataDayArray:(NSArray *)dayArray;
+/*
+指定时的选择内容
+*/
+-(void)upDataHourArray:(NSArray *)hourArray;
+/*
+ 指定分钟的选择内容
+ */
+-(void)upDataMinuteArray:(NSArray *)minuteArray;
+/*
+ 指定秒的选择内容
+ */
+-(void)upDataSecondArray:(NSArray *)secondArray;
 
 //设置默认显示的时间
 /*默认显示时间格式必须为以下类型的其中一种
