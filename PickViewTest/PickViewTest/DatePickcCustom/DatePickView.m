@@ -50,7 +50,9 @@
 @property (nonatomic, assign)NSInteger numComponces;
 
 @property (nonatomic, assign)NSInteger pickViewType;
+
 @end
+
 @implementation DatePickView
 
 -(instancetype)initWithFrame:(CGRect)frame timeType:(NSInteger)timerType {
@@ -121,6 +123,7 @@
 {
     if (!_testPickView) {
         self.testPickView = [[UIPickerView alloc] initWithFrame:CGRectZero];
+        self.testPickView.backgroundColor = [UIColor redColor];
         self.testPickView.backgroundColor = [UIColor whiteColor];
         self.testPickView.showsSelectionIndicator = YES;
         self.testPickView.delegate = self;
@@ -137,7 +140,7 @@
         numberComponents = 6;
     }else if (_pickViewType == 1) {
         numberComponents = 5;
-    }else if (_pickViewType == 2) {
+    }else if (_pickViewType == 2 || _pickViewType == 8) {
         numberComponents = 4;
     }else if (_pickViewType == 3 || _pickViewType == 5){
         numberComponents = 3;
@@ -219,6 +222,16 @@
         }else {
             return self.secondAry.count;
         }
+    }else if (_pickViewType == 8) {
+        if (component == 0) {
+            return self.monthAry.count;
+        }else if (component == 1){
+            return self.dayAry.count;
+        }else if (component == 2) {
+            return self.hourAry.count;
+        }else {
+            return self.minuteAry.count;
+        }
     }
     else
         return 0;
@@ -299,9 +312,20 @@
         }else {
             return [self.secondAry objectAtIndex:row];
         }
-    }else {
-        return @"";
-    }
+    }else if (_pickViewType == 8) {
+            if (component == 0) {
+                return [self.monthAry objectAtIndex:row];
+            }else if (component == 1){
+                self.day1 = [[self.dayAry objectAtIndex:row] intValue];
+                return [self.dayAry objectAtIndex:row];
+            }else if (component == 2){
+                return [self.hourAry objectAtIndex:row];
+            }else {
+                return [self.minuteAry objectAtIndex:row];
+            }
+        }else {
+            return @"";
+        }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -495,9 +519,9 @@
         }
     }}
 
--(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return ([UIScreen mainScreen].bounds.size.width-10)/_numComponces;
-}
+//-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+//    return ([UIScreen mainScreen].bounds.size.width)/_numComponces;
+//}
 
 #pragma mark -
 -(void)setYearBeforNow:(int)num andType:(int)type
@@ -612,6 +636,7 @@
         [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
         return;
     }
+    
     self.year = [[dateStr substringToIndex:4] intValue];
     self.month = [[dateStr substringWithRange:NSMakeRange(5, 2)] intValue];
     self.day = [[dateStr substringWithRange:NSMakeRange(8, 2)] intValue];
@@ -689,8 +714,9 @@
         [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
         return;
     }
+    
+    [self.testPickView reloadAllComponents];
     if (_pickViewType == 0) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:year inComponent:0 animated:YES];
         [self.testPickView selectRow:month inComponent:1 animated:YES];
         [self.testPickView selectRow:day inComponent:2 animated:YES];
@@ -699,7 +725,6 @@
         [self.testPickView selectRow:second inComponent:5 animated:YES];
         self.isRun = [self isRunWithYear:self.year];
     }else if (_pickViewType == 1) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:year inComponent:0 animated:YES];
         [self.testPickView selectRow:month inComponent:1 animated:YES];
         [self.testPickView selectRow:day inComponent:2 animated:YES];
@@ -707,7 +732,6 @@
         [self.testPickView selectRow:minute inComponent:4 animated:YES];
         self.isRun = [self isRunWithYear:self.year];
     }else if (_pickViewType == 2) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:year inComponent:0 animated:YES];
         [self.testPickView selectRow:month inComponent:1 animated:YES];
         [self.testPickView selectRow:day inComponent:2 animated:YES];
@@ -715,29 +739,29 @@
         self.isRun = [self isRunWithYear:self.year];
     }
     else if (_pickViewType == 3) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:year inComponent:0 animated:YES];
         [self.testPickView selectRow:month inComponent:1 animated:YES];
         [self.testPickView selectRow:day inComponent:2 animated:YES];
         self.isRun = [self isRunWithYear:self.year];
     }else if (_pickViewType == 4) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:year inComponent:0 animated:YES];
         [self.testPickView selectRow:month inComponent:1 animated:YES];
         self.isRun = [self isRunWithYear:self.year];
     }else if (_pickViewType == 5) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:hour inComponent:0 animated:YES];
         [self.testPickView selectRow:minute inComponent:1 animated:YES];
         [self.testPickView selectRow:second inComponent:2 animated:YES];
     }else if (_pickViewType == 6) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:hour inComponent:0 animated:YES];
         [self.testPickView selectRow:minute inComponent:1 animated:YES];
     }else if (_pickViewType == 7) {
-        [self.testPickView reloadAllComponents];
         [self.testPickView selectRow:minute inComponent:0 animated:YES];
         [self.testPickView selectRow:second inComponent:1 animated:YES];
+    }else if (_pickViewType == 8) {
+        [self.testPickView selectRow:month inComponent:0 animated:YES];
+        [self.testPickView selectRow:day inComponent:1 animated:YES];
+        [self.testPickView selectRow:hour inComponent:2 animated:YES];
+        [self.testPickView selectRow:minute inComponent:3 animated:YES];
     }
 }
 
@@ -853,9 +877,13 @@
         }else if (_pickViewType == 7) {
             NSRange range = NSMakeRange(14, 5);
             sText = [sText substringWithRange:range];
+        }else if (_pickViewType == 8) {
+            NSRange range = NSMakeRange(5, 11);
+            sText = [sText substringWithRange:range];
         }
         [self removeFromSuperview];
         [self.delegate returnDateCompleteWithDate:sText];
     }
 }
+
 @end

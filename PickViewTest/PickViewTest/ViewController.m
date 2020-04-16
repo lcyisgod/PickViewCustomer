@@ -37,10 +37,8 @@
 -(DatePickView *)dataPick
 {
     if (!_dataPick) {
-        self.dataPick = [[DatePickView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) timeType:0];
+        self.dataPick = [[DatePickView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) timeType:8];
         self.dataPick.delegate = self;
-//        [self.dataPick setYeraFrom:2010 and:2099];
-//        [self.dataPick setApperDate:@"2040 02 22 20 22 22"];
     }
     return _dataPick;
 }
