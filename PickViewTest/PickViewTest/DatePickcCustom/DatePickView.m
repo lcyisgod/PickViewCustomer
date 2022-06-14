@@ -350,6 +350,7 @@
         if (component == 2) {
             NSString *selectDay = [self.dayAry objectAtIndex:row];
             self.day = [selectDay intValue];
+            self.day1 = self.day;
         }
         
         if (component == 3) {
@@ -386,6 +387,7 @@
         if (component == 2) {
             NSString *selectDay = [self.dayAry objectAtIndex:row];
             self.day = [selectDay intValue];
+            self.day1 = self.day;
         }
         
         if (component == 3) {
@@ -417,6 +419,7 @@
         if (component == 2) {
             NSString *selectDay = [self.dayAry objectAtIndex:row];
             self.day = [selectDay intValue];
+            self.day1 = self.day;
         }
         
         if (component == 3) {
@@ -443,6 +446,7 @@
         if (component == 2) {
             NSString *slectDay = [self.dayAry objectAtIndex:row];
             self.day = [slectDay intValue];
+            self.day1 = self.day;
         }
     }else if (_pickViewType == 4) {
         if (component == 0) {
@@ -506,6 +510,7 @@
         if (component == 1) {
             NSString *selectDay = [self.dayAry objectAtIndex:row];
             self.day = [selectDay intValue];
+            self.day1 = self.day;
         }
         
         if (component == 2) {
@@ -518,10 +523,6 @@
             self.minute = [selectMinute intValue];
         }
     }}
-
-//-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-//    return ([UIScreen mainScreen].bounds.size.width)/_numComponces;
-//}
 
 #pragma mark -
 -(void)setYearBeforNow:(int)num andType:(int)type
